@@ -17,7 +17,7 @@ func main() {
 		})
 	})
 
-	r.GET("/api/v1/message", func(c *gin.Context) {
+	r.GET("/v1/message", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": message,
 		})

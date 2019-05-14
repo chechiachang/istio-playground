@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: &app-name machix-server
+  name: istio-playground
   labels:
     version: v1
     app: istio-playground

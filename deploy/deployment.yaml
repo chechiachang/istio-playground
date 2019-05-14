@@ -21,9 +21,8 @@ spec:
     spec:
       containers:
       - name: istio-playground
-        #command: ["/usr/local/bin/entrypoint"]
-        command: ["sleep", "36000"]
-        image: chechiachang/istio-playground:master-34117a2
+        command: ["/usr/local/bin/entrypoint"]
+        image: chechiachang/istio-playground:master-4455d44
         imagePullPolicy: IfNotPresent
         resources:
           requests:
