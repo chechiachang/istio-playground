@@ -22,7 +22,7 @@ spec:
       containers:
       - name: istio-playground
         command: ["/usr/local/bin/entrypoint"]
-        image: chechiachang/istio-playground:master-4455d44
+        image: chechiachang/istio-playground:master-375b177
         imagePullPolicy: IfNotPresent
         resources:
           requests:
