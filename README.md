@@ -1,31 +1,56 @@
 istio-playground
 ===
 
-# Get Started
+# Install
+
+### K8s
 
 ```
-go get github.com/chechiachang/istio-playground
-cd ${GOPATH}/src/github.com/chechiachang/istio-playground
-go get -u ./...
-
-go run cmd/server/main.go
+minikube start
+# or
+make kind
 ```
 
-# Deploy
+### Fetch istio
 
 ```
-make build push tag
-kubectl apply -f deploy/
+curl -L https://istio.io/downloadIstio | sh -
+sudo mv istio-1.6.4/bin/istioctl /usr/local/bin
+
+istioctl version
+1.6.4
+
+cd istio-1.6.4
 ```
 
-# Use API on K8s
+---
+
+# Get started
+
+Fetch examples
+```
+kpt 
+```
 
 ```
-POD_ID=$(kc get po --selector='app=istio-playground,component=api-server'  -o=go-template="{{range .items}}{{.metadata.name}}{{end}}")
+minikube start
 
-kubectl exec -it ${POD_ID} --container istio-playground curl istio-playground/ping
-{"message":"pong"}
+istioctl install --set profile=demo
+kubectl label namespace default istio-injection=enabled
 
-kubectl exec -it ${POD_ID} --container istio-playground curl istio-playground/v1/message
-{"message":"v1"}
+kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 ```
+
+```
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
+export INGRESS_HOST=$(minikube ip)
+export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+open http://$GATEWAY_URL/productpage
+```
+
+# Configuration
+
+```
+kubectl get virtualservices -o yaml
+
