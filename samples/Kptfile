@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+    name: samples
+upstream:
+    type: git
+    git:
+        commit: 58f551e08f08addfd81783e1c2ed1eabeb836168
+        repo: https://github.com/istio/istio
+        directory: /samples
+        ref: 1.6.4

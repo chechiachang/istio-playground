@@ -12,7 +12,7 @@ kiali:
 # sample
 
 samples:
-	kpt pkg get https://github.com/istio/istio.git/examples@1.6.4 samples
+	kpt pkg get https://github.com/istio/istio.git/samples@1.6.4 samples
 
 #ifeq ($(UNAME_S),Linux)
 #tag:

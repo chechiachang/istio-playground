@@ -52,5 +52,7 @@ open http://$GATEWAY_URL/productpage
 # Configuration
 
 ```
-kubectl get virtualservices -o yaml
+kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
+```
+
 
