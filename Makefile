@@ -9,6 +9,9 @@ kind:
 kiali:
 	istioctl dashboard kiali
 
+grafana:
+	istioctl dashboard grafana
+
 # sample
 
 samples:
